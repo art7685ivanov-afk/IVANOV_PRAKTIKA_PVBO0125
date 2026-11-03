@@ -1,3 +1,5 @@
+package ru.mirea.task3.opt4;
+
 public class Wrapper_Double {
     public static void main(String[] args) {
         // 1. Создание объектов Double через valueOf()
