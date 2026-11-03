@@ -1,11 +1,5 @@
 package ru.mirea.task9.opt1;
 
-/**
- * Задание 1. Сортировка вставками.
- * <p>
- * Тестовый класс создаёт массив класса Student, сортирует его по полю
- * iDNumber алгоритмом сортировки вставками и выводит результат.
- */
 public class Task9_1 {
 
     static class Student {
@@ -27,10 +21,6 @@ public class Task9_1 {
         }
     }
 
-    /**
-     * Сортировка вставками: на каждом шаге очередной элемент вставляется
-     * в уже отсортированную часть массива.
-     */
     public static void insertionSort(Student[] students) {
         for (int i = 1; i < students.length; i++) {
             Student key = students[i];

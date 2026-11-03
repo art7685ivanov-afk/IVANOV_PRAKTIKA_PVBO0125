@@ -1,12 +1,6 @@
 package ru.mirea.task13.opt1;
 
-/**
- * Задание 1 на класс String.
- * <p>
- * Метод принимает произвольную строку и последовательно демонстрирует
- * возможности класса String: charAt, endsWith, startsWith, contains, indexOf,
- * replace, toUpperCase, toLowerCase, substring.
- */
+
 public class Task13_1 {
 
     public static void analyze(String text) {

@@ -1,11 +1,6 @@
 package ru.mirea.task8.opt8;
 
-/**
- * Задание 8. Палиндром.
- * <p>
- * Дано слово из строчных латинских букв. Проверить, является ли оно палиндромом.
- * Циклы не используются — только рекурсия.
- */
+
 public class Task8_8 {
 
     public static boolean isPalindrome(String word, int left, int right) {

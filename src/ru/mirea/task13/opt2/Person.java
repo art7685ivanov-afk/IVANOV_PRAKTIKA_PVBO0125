@@ -1,12 +1,5 @@
 package ru.mirea.task13.opt2;
 
-/**
- * Задание 2. Класс Person.
- * <p>
- * Функция возвращает «Фамилия И.О.» и корректно работает при отсутствии
- * имени или отчества. Для быстродействия используется StringBuilder
- * с заранее заданной ёмкостью (без лишних промежуточных строк).
- */
 public class Person {
 
     private final String surname;
@@ -19,7 +12,7 @@ public class Person {
         this.patronymic = patronymic;
     }
 
-    /** Фамилия с инициалами: «Иванов А.С.», «Иванов А.», «Иванов». */
+
     public String getShortName() {
         StringBuilder result = new StringBuilder(32);
         result.append(surname);

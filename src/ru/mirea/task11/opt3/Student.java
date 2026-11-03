@@ -5,13 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Задание 3. Класс Student с датой рождения.
- * <p>
- * Переопределён toString(), добавлен метод, возвращающий строковое
- * представление даты рождения в заданном формате (короткий, средний, полный
- * или по собственному шаблону SimpleDateFormat).
- */
+
 public class Student {
 
     private String name;
@@ -34,11 +28,7 @@ public class Student {
         this.birthDate = birthDate;
     }
 
-    /**
-     * Строковое представление даты рождения в стандартном формате.
-     *
-     * @param style DateFormat.SHORT, DateFormat.MEDIUM, DateFormat.LONG или DateFormat.FULL
-     */
+
     public String getBirthDateFormatted(int style) {
         if (birthDate == null) {
             return "дата рождения не указана";
@@ -46,7 +36,7 @@ public class Student {
         return DateFormat.getDateInstance(style, Locale.getDefault()).format(birthDate);
     }
 
-    /** Строковое представление даты рождения по собственному шаблону, например "dd.MM.yyyy". */
+
     public String getBirthDateFormatted(String pattern) {
         if (birthDate == null) {
             return "дата рождения не указана";

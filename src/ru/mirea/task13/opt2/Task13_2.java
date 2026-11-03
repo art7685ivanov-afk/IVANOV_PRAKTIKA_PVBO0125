@@ -1,8 +1,5 @@
 package ru.mirea.task13.opt2;
 
-/**
- * Проверка класса Person: наличие и отсутствие имени и отчества.
- */
 public class Task13_2 {
 
     public static void main(String[] args) {

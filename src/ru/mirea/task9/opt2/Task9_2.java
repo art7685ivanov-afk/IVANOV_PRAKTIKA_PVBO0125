@@ -2,13 +2,6 @@ package ru.mirea.task9.opt2;
 
 import java.util.Comparator;
 
-/**
- * Задание 2. Быстрая сортировка с компаратором.
- * <p>
- * Класс SortingStudentsByGPA реализует интерфейс Comparator и сортирует
- * список студентов по итоговым баллам в порядке убывания с использованием
- * алгоритма быстрой сортировки.
- */
 public class Task9_2 {
 
     static class Student {
@@ -34,7 +27,7 @@ public class Task9_2 {
         }
     }
 
-    /** Компаратор: по убыванию среднего балла. */
+
     static class SortingStudentsByGPA implements Comparator<Student> {
         @Override
         public int compare(Student first, Student second) {

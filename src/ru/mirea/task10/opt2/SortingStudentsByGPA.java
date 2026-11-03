@@ -2,18 +2,12 @@ package ru.mirea.task10.opt2;
 
 import java.util.Comparator;
 
-/**
- * Задание 2. Класс SortingStudentsByGPA.
- * <p>
- * Содержит поле-массив объектов Student с именем iDNumber и методы:
- * setArray(), quicksort(), mergeSort(), outArray(), а также сортировку
- * по другому полю (по фамилии).
- */
+
 public class SortingStudentsByGPA {
 
     private Student[] iDNumber;
 
-    /** Заполнение массива студентов тестовыми данными (метод setArray). */
+
     public void setArray() {
         iDNumber = new Student[]{
                 new Student("Артём", "Иванов", "ИВТ", 2, "ПВБО-01-25", 4.50),
@@ -28,12 +22,12 @@ public class SortingStudentsByGPA {
         this.iDNumber = students;
     }
 
-    /** Быстрая сортировка по среднему баллу (по убыванию). */
+
     public void quicksort() {
         quicksort(0, iDNumber.length - 1, Student.BY_GPA_DESC);
     }
 
-    /** Быстрая сортировка с произвольным компаратором. */
+
     public void quicksort(Comparator<Student> comparator) {
         quicksort(0, iDNumber.length - 1, comparator);
     }
@@ -67,12 +61,12 @@ public class SortingStudentsByGPA {
         iDNumber[second] = buffer;
     }
 
-    /** Сортировка слиянием по среднему баллу (по убыванию). */
+
     public void mergeSort() {
         iDNumber = mergeSort(iDNumber, Student.BY_GPA_DESC);
     }
 
-    /** Сортировка слиянием с произвольным компаратором. */
+
     public void sortByOtherField(Comparator<Student> comparator) {
         iDNumber = mergeSort(iDNumber, comparator);
     }
@@ -116,7 +110,7 @@ public class SortingStudentsByGPA {
         return result;
     }
 
-    /** Вывод массива студентов (метод outArray). */
+
     public void outArray() {
         for (Student student : iDNumber) {
             System.out.println("  " + student);

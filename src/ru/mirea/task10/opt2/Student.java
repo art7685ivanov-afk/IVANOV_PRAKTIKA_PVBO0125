@@ -2,17 +2,14 @@ package ru.mirea.task10.opt2;
 
 import java.util.Comparator;
 
-/**
- * Класс студента для практической работы № 10:
- * имя, фамилия, специальность, курс, группа и средний балл.
- */
+
 public class Student {
 
-    /** Компаратор по среднему баллу: по убыванию. */
+
     public static final Comparator<Student> BY_GPA_DESC =
             (first, second) -> Double.compare(second.gpa, first.gpa);
 
-    /** Компаратор по фамилии: по возрастанию (пример сортировки по другому полю). */
+
     public static final Comparator<Student> BY_SURNAME =
             Comparator.comparing(student -> student.surname);
 

@@ -1,8 +1,6 @@
 package ru.mirea.task10.opt1;
 
-/**
- * Демонстрация класса Student: конструктор, геттеры и сеттеры.
- */
+
 public class Task10_1 {
 
     public static void main(String[] args) {

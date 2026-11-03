@@ -2,13 +2,7 @@ package ru.mirea.task13.opt3;
 
 import java.util.StringTokenizer;
 
-/**
- * Задание 3. Класс Address.
- * <p>
- * Из строки вида «Страна[d] Регион[d] Город[d] Улица[d] Дом[d] Корпус[d] Квартира»
- * извлекаются части адреса и записываются в соответствующие поля.
- * Реализованы два варианта разбора: через split() и через StringTokenizer.
- */
+
 public class Task13_3 {
 
     static class Address {
@@ -32,7 +26,7 @@ public class Task13_3 {
             flat = valueOf(parts, 6);
         }
 
-        /** Вариант Б: разделитель — любой из символов ',', '.', ';', используется StringTokenizer. */
+
         public Address(String source, boolean useStringTokenizer) {
             if (!useStringTokenizer) {
                 throw new IllegalArgumentException("Ожидается StringTokenizer");
