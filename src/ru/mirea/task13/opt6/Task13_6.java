@@ -1,86 +1,86 @@
 package ru.mirea.task13.opt6;
+import java.io.*;
+import java.util.*;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Scanner;
-
-/**
- * Задание 6. Цепочка слов.
- * <p>
- * В main считывается имя файла со словами, разделёнными пробелом.
- * В getLine() с помощью StringBuilder слова расставляются так, чтобы последняя
- * буква слова совпадала с первой буквой следующего (без учёта регистра),
- * и каждое слово участвовало ровно один раз.
- */
 public class Task13_6 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя файла со словами (например, words.txt): ");
-
-        String fileName = scanner.nextLine().trim();
-        String[] words;
+        System.out.print("Введите имя файла: ");
+        String fileName = scanner.nextLine();
 
         try {
-            String content = Files.readString(Path.of(fileName));
-            words = content.trim().split("\\s+");
+            List<String> words = readWordsFromFile(fileName);
+            String result = getLine(words);
+            System.out.println("Результат: " + result);
         } catch (IOException e) {
-            System.out.println("Не удалось прочитать файл " + fileName + ": " + e.getMessage());
-            System.out.println("Используются слова по умолчанию.");
-            words = new String[]{"apple", "elephant", "tiger", "rabbit", "tree"};
+            System.out.println("Ошибка чтения файла: " + e.getMessage());
         }
-
-        String chain = getLine(words);
-        System.out.println("Исходные слова: " + Arrays.toString(words));
-        System.out.println("Цепочка: " + chain);
     }
 
-    public static String getLine(String[] words) {
-        boolean[] used = new boolean[words.length];
-        StringBuilder chain = new StringBuilder();
-
-        for (int start = 0; start < words.length; start++) {
-            if (buildChain(words, used, start, chain, words.length)) {
-                return chain.toString().trim();
+    private static List<String> readWordsFromFile(String fileName) throws IOException {
+        List<String> words = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.trim().split("\\s+");
+            for (String word : parts) {
+                if (!word.isEmpty()) {
+                    words.add(word);
+                }
             }
         }
-        return "Невозможно расставить все слова в одну цепочку";
+        reader.close();
+        return words;
     }
 
-    private static boolean buildChain(String[] words, boolean[] used, int index,
-                                      StringBuilder chain, int total) {
-        used[index] = true;
-        int lengthBefore = chain.length();
-        chain.append(words[index]).append(' ');
+    public static String getLine(List<String> words) {
+        if (words.isEmpty()) return "";
 
-        if (countUsed(used) == total) {
+        StringBuilder result = new StringBuilder();
+        List<String> remaining = new ArrayList<>(words);
+
+        // Пробуем начать с каждого слова
+        for (int i = 0; i < remaining.size(); i++) {
+            List<String> tempRemaining = new ArrayList<>(remaining);
+            String startWord = tempRemaining.remove(i);
+            result.setLength(0);
+            result.append(startWord);
+
+            if (buildChain(result, tempRemaining)) {
+                return result.toString();
+            }
+        }
+
+        return "Невозможно построить цепочку";
+    }
+
+    private static boolean buildChain(StringBuilder chain, List<String> remaining) {
+        if (remaining.isEmpty()) {
             return true;
         }
 
-        char lastLetter = Character.toLowerCase(words[index].charAt(words[index].length() - 1));
-        for (int next = 0; next < words.length; next++) {
-            if (!used[next]
-                    && Character.toLowerCase(words[next].charAt(0)) == lastLetter
-                    && buildChain(words, used, next, chain, total)) {
-                return true;
+        String lastWord = chain.toString().trim();
+        char lastChar = Character.toLowerCase(lastWord.charAt(lastWord.length() - 1));
+
+        for (int i = 0; i < remaining.size(); i++) {
+            String word = remaining.get(i);
+            char firstChar = Character.toLowerCase(word.charAt(0));
+
+            if (firstChar == lastChar) {
+                chain.append(" ").append(word);
+                remaining.remove(i);
+
+                if (buildChain(chain, remaining)) {
+                    return true;
+                }
+
+                // Backtrack
+                chain.delete(chain.length() - word.length() - 1, chain.length());
+                remaining.add(i, word);
             }
         }
 
-        // Откат: слово не подошло
-        chain.setLength(lengthBefore);
-        used[index] = false;
         return false;
-    }
-
-    private static int countUsed(boolean[] used) {
-        int count = 0;
-        for (boolean flag : used) {
-            if (flag) {
-                count++;
-            }
-        }
-        return count;
     }
 }
